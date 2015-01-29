@@ -14,6 +14,7 @@ private:
     Square board[100][100]; // board[x][y] = square at (x,y)
 
 public:
+    Board() {}
     Board(int width, int height);
     Board(int width, int height, vector<Point> livingPoints);
 
