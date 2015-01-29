@@ -21,6 +21,8 @@ public:
     int getHeight() { return height;}
     int getWidth() { return width;}
 
+    Point getPointInBoard(Point P);
+
     Square getSquareAtPoint(Point p);
     bool isOnBoard(Point p);
     void toggleLife(int x, int y);

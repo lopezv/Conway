@@ -34,6 +34,22 @@ Board::Board(int width, int height, vector<Point> livingPoints)
     }
 }
 
+Point Board::getPointInBoard(Point P){
+    int x = P.getX(), y = P.getY();
+
+    if (x < 0){
+        x = width-1;
+    } else if( x >= width){
+        x = 0;
+    }
+    if (y < 0){
+        y = height-1;
+    } else if( y >= height){
+        y = 0;
+    }
+    return Point(x,y);
+}
+
 Square Board::getSquareAtPoint(Point p){
     return board[p.getX()][p.getY()];
 }
@@ -73,7 +89,10 @@ void Board::updateState(){
 
             for(std::vector<Point>::size_type i = 0; i != 8; i++) {
                 Point p = surr[i];
-                if (isOnBoard(p) && getSquareAtPoint(p).isLiving()){
+                if(!isOnBoard(p)){
+                    p = this->getPointInBoard(p);
+                }
+                if (getSquareAtPoint(p).isLiving()){
                     numNeighbors++;
                 }
             }
