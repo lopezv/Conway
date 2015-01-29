@@ -45,6 +45,19 @@ void Board::toggleLife(int x, int y){
     board[x][y].setLife(!board[x][y].isLiving());
 }
 
+int Board::getNumNeighbors(int x, int y){
+    Square s = board[i][j];
+    vector<Point> surr = s.getLocation().getAdjacentPoints();
+    int numNeighbors = 0;
+
+    for(std::vector<Point>::size_type i = 0; i != 8; i++) {
+        Point p = surr[i];
+        if (isOnBoard(p) && getSquareAtPoint(p).isLiving()){
+            numNeighbors++;
+        }
+    }
+    return numNeighbors;
+}
 
 void Board::updateState(){
 

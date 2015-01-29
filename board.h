@@ -24,6 +24,7 @@ public:
     bool isOnBoard(Point p);
     void toggleLife(int x, int y);
 
+    int getNumNeighbors(int x, int y);
 
     void updateState();
     string getStringRep();
