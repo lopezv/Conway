@@ -24,9 +24,7 @@ int main()
         b.updateState();
         cout << b.getStringRep() << endl;
         b.updateState();
-        cout << b.getStringRep() << endl;
-        b.updateState();
-
+    b.saveToFile("board3.txt");
 
     return 0;
 }

@@ -28,6 +28,10 @@ public:
 
     void updateState();
     string getStringRep();
+
+    void saveToFile(string fileName);
+
+
 };
 
 #endif // BOARD_H

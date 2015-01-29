@@ -1,5 +1,6 @@
 #include "board.h"
 #include "square.h"
+#include "fstream"
 #include <iostream>
 
 Board::Board(int width, int height)
@@ -46,7 +47,7 @@ void Board::toggleLife(int x, int y){
 }
 
 int Board::getNumNeighbors(int x, int y){
-    Square s = board[i][j];
+    Square s = board[x][y];
     vector<Point> surr = s.getLocation().getAdjacentPoints();
     int numNeighbors = 0;
 
@@ -107,5 +108,24 @@ string Board::getStringRep(){
         str += '\n';
     }
     return str;
+}
+
+void Board::saveToFile(string fileName){
+    ofstream myfile;
+    myfile.open (fileName.c_str(),	ios::out);
+    if (myfile.is_open()){
+        myfile << width << " " << height << endl;
+        for(int j = 0; j < height; j++){
+            for(int i = 0; i < width; i ++){
+
+                Square s = board[i][j];
+             if(s.isLiving()){
+                    myfile << i << " " << j << endl;
+                }
+            }
+        }
+        myfile.flush();
+    }
+    myfile.close();
 }
 
