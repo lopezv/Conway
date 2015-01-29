@@ -1,9 +1,15 @@
 #include "board.h"
 #include "point.h"
+#include "square.h"
 #include <iostream>
 
 int main()
 {
+
+    int width, height;
+
+//    cin >> width >> height;
+
     vector<Point> v;
     v.push_back(Point(0,0));
     v.push_back(Point(0,1));
@@ -14,11 +20,9 @@ int main()
 
 
 
-    Board b = Board(4,4, v);
+    Board b = Board(4,4,v);
 
-    cout << "HI" << endl;
     cout << b.getStringRep() << endl;
-
 
     return 0;
 }

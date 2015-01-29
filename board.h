@@ -11,7 +11,7 @@ class Board
 private:
     int width;
     int height;
-    Square** board; // board[x][y] = square at (x,y)
+    Square board[100][100]; // board[x][y] = square at (x,y)
 
 public:
     Board(int width, int height);
