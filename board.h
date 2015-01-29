@@ -17,6 +17,9 @@ public:
     Board(int width, int height);
     Board(int width, int height, vector<Point> livingPoints);
 
+    int getHeight() { return height;}
+    int getWidth() { return width;}
+
     Square getSquareAtPoint(Point p);
     bool isOnBoard(Point p);
     void toggleLife(int x, int y);

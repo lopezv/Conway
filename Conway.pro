@@ -22,4 +22,5 @@ qtcAddDeployment()
 HEADERS += \
     square.h \
     point.h \
-    board.h
+    board.h \
+    parser.h

@@ -67,13 +67,10 @@ void Board::updateState(){
             if(!s.isLiving()){
                 if(numNeighbors == 3){
                     pointsToToggle.push_back(Point(i,j));
-                    cout << i << " " << j << " " << endl;
                 }
             } else{
                 if(numNeighbors < 2 || numNeighbors > 3){
                     pointsToToggle.push_back(Point(i,j));
-
-                                        cout << i << " " << j << " " << endl;
                 }
             }
         }
