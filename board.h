@@ -18,9 +18,12 @@ public:
     Board(int width, int height, vector<Point> livingPoints);
 
     Square getSquareAtPoint(Point p);
+    bool isOnBoard(Point p);
+    void toggleLife(int x, int y);
+
+
     void updateState();
     string getStringRep();
-
 };
 
 #endif // BOARD_H

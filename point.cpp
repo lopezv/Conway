@@ -29,4 +29,5 @@ vector<Point> Point::getAdjacentPoints(){
             }
         }
     }
+    return v;
 }

@@ -25,12 +25,8 @@ Board::Board(int width, int height, vector<Point> livingPoints)
             vector<Point>::iterator it = find (livingPoints.begin(), livingPoints.end(), loc);
 
             if (it != livingPoints.end())  {
-                cout << "Making live square at " << i << " " << j << endl;
-
                 board[i][j] = Square(Point(i,j), true);
             } else{
-                cout << "Making dead square at " << i << " " << j << endl;
-
                 board[i][j] = Square(Point(i,j));
             }
         }
@@ -41,29 +37,50 @@ Square Board::getSquareAtPoint(Point p){
     return board[p.getX()][p.getY()];
 }
 
+bool Board::isOnBoard(Point p){
+    return  0 <= p.getX() && p.getX() < width && 0 <= p.getY() && p.getY() < height;
+}
+
+void Board::toggleLife(int x, int y){
+    board[x][y].setLife(!board[x][y].isLiving());
+}
+
+
 void Board::updateState(){
-    for(int i = 0; i < width; i ++){
+
+    vector<Point> pointsToToggle;
+
+    for(int i = 0; i < width; i++){
         for(int j = 0; j < height; j++){
-            Point here = Point(i,j);
-            Square s = this->getSquareAtPoint(here);
+
+            Square s = board[i][j];
             vector<Point> surr = s.getLocation().getAdjacentPoints();
             int numNeighbors = 0;
-            for(std::vector<Point>::size_type i = 0; i != surr.size(); i++) {
+
+            for(std::vector<Point>::size_type i = 0; i != 8; i++) {
                 Point p = surr[i];
-                if (getSquareAtPoint(p).isLiving()){
+                if (isOnBoard(p) && getSquareAtPoint(p).isLiving()){
                     numNeighbors++;
                 }
             }
+
             if(!s.isLiving()){
                 if(numNeighbors == 3){
-                    s.setLife(true);
+                    pointsToToggle.push_back(Point(i,j));
+                    cout << i << " " << j << " " << endl;
                 }
             } else{
                 if(numNeighbors < 2 || numNeighbors > 3){
-                    s.setLife(false);
+                    pointsToToggle.push_back(Point(i,j));
+
+                                        cout << i << " " << j << " " << endl;
                 }
             }
         }
+    }
+    for(std::vector<Point>::size_type i = 0; i < pointsToToggle.size(); i++) {
+        Point p = pointsToToggle[i];
+        this->toggleLife(p.getX(), p.getY());
     }
 
 }
@@ -75,10 +92,10 @@ string Board::getStringRep(){
         for(int i = 0; i < width; i ++){
 
             Square s = board[i][j];
-            cout << "got square" << endl;
             str += s.getCharRep();
         }
         str += '\n';
     }
     return str;
 }
+
