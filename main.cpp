@@ -14,14 +14,19 @@ int main()
     v.push_back(Point(3,3));
     v.push_back(Point(2,3));
 
-    Board b = Board(4,4,v);
+    //Board b = Board(4,4,v);
 
-    //Board b = parse("/home/lopezv/workspace/Conway/beacon.txt");
+    Board b = parse("/home/lopezv/workspace/Conway/pulsar.txt");
 
-    while(true){
         cout << b.getStringRep() << endl;
         b.updateState();
-    }
+        cout << b.getStringRep() << endl;
+        b.updateState();
+        cout << b.getStringRep() << endl;
+        b.updateState();
+        cout << b.getStringRep() << endl;
+        b.updateState();
+
 
     return 0;
 }
